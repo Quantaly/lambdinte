@@ -9,6 +9,7 @@ import (
 	"context"
 	"crypto/ed25519"
 	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"io"
 	"strings"
@@ -58,7 +59,7 @@ func (f *Function) invoke(ctx context.Context, evt incomingEvent) (res outgoingR
 		res.StatusCode = 401
 		return
 	}
-	sig, err := base64.StdEncoding.DecodeString(signature)
+	sig, err := hex.DecodeString(signature)
 	if err != nil {
 		err = nil
 		res.StatusCode = 401
