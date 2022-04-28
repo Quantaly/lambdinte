@@ -54,7 +54,7 @@ func (f *Function) Invoke(ctx context.Context, eventData []byte) ([]byte, error)
 }
 
 func (f *Function) invoke(ctx context.Context, evt incomingEvent) (res outgoingResult, err error) {
-	signature, ok := evt.Headers["X-Signature-Ed25519"]
+	signature, ok := evt.Headers["x-signature-ed25519"]
 	if !ok {
 		res.StatusCode = 401
 		return
@@ -66,7 +66,7 @@ func (f *Function) invoke(ctx context.Context, evt incomingEvent) (res outgoingR
 		return
 	}
 
-	timestamp, ok := evt.Headers["X-Signature-Timestamp"]
+	timestamp, ok := evt.Headers["x-signature-timestamp"]
 	if !ok {
 		res.StatusCode = 401
 		return
