@@ -37,6 +37,9 @@ func (h *handlerMux) Register(key string, handler Handler) {
 		panic("lambdinte: multiple registrations for " + key)
 	}
 
+	if h.handlers == nil {
+		h.handlers = make(map[string]Handler)
+	}
 	h.handlers[key] = handler
 }
 
